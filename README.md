@@ -7,8 +7,9 @@ Make sure docker is running first
 # You only have to do this once
 docker build -t name:tag .
 
-# This takes you into a shell
-docker run -it -v $(pwd):/os-workspace -p 1234:1234 name:tag
+# This takes you into a shell with a specific container
+# the --rm flag removes the container after you're done with it
+docker run -it --rm -v $(pwd):/os-workspace -p 1234:1234 name:tag
 ```
 where name:tag is whatever you want. Run that first
 
