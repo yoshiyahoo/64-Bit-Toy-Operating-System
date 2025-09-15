@@ -1,6 +1,17 @@
 # 64-Bit-Toy-Operating-System
 Here is a toy OS made for me. It's kinda cool
 
+# Running Container
+Make sure docker is running first
+```bash
+# You only have to do this once
+docker build -t name:tag .
+
+# This takes you into a shell
+docker run -it -v $(pwd):/os-workspace -p 1234:1234 name:tag
+```
+where name:tag is whatever you want. Run that first
+
 # Rough Plan
 ## Phase 1 (Does the thing start? Hard Difficulty)
 This operating system will run on 64-bit systems and utilize the Zig Programming Language
