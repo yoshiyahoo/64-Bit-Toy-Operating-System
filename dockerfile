@@ -8,14 +8,15 @@ FROM ubuntu:22.04
 # qemu-system-x86, virtual x86 machine to test OS
 # grub-bin-pc, a grub executible to run a machine on
 # xorriso, a tool for creating, modifying, and burning ISO 9660 filesystem images
-RUN apt-get update && apt-get install -y \
+RUN apt-get update 
+RUN apt-get install -y \
 	wget \
 	build-essential \
 	nasm \
 	xz-utils \
 	qemu-system-x86 \
 	mtools \
-	grub-pc-bin \
+	grub-common \
 	xorriso \
 	curl 
 
