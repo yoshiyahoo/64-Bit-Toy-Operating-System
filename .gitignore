@@ -1,1 +1,3 @@
 *.nu
+zig-out/
+.zig-cache/

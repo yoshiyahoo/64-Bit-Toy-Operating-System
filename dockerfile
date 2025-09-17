@@ -26,9 +26,15 @@ RUN apt-get install -y \
 RUN cd /opt && \
 	wget https://ziglang.org/download/0.15.1/zig-x86_64-linux-0.15.1.tar.xz && \
 	tar -xf zig-x86_64-linux-0.15.1.tar.xz && \
-	ln -s /opt/zig-x86_64-linux-0.15.1/zig /usr/local/bin/zig
+	ln -s /opt/zig-x86_64-linux-0.15.1/zig /usr/local/bin/zig 
 
-WORKDIR /os-workspace
+WORKDIR /os-workspace 
+
+# Certain cache files in zig don't have permissions to be used on the host machine
+# Push these files onto the container
+RUN mkdir -p /tmp/zig-cache 
+ENV ZIG_GLOBAL_CACHE_DIR=/tmp/zig-cache 
+ENV ZIG_LOCAL_CACHE_DIR=/tmp/zig-cache 
 
 # Keep container running
 CMD ["bash"]
