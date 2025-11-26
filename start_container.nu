@@ -19,18 +19,13 @@ if (netstat -n | find -r " 127.0.0.1:6000 " | is-empty) {
 
 # Ensure the DISPLAY environment variable is set
 if not ("DISPLAY" in $env) {
-	# Save IP data to a file for grep to see it better
-	ipconfig | save -f file.txt
-
-	# Read the file and grab the first IP address
-	# From testing, 39 is the index where the IP's start,
-	let iplist = grep "IPv4 Address" file.txt | split row "\r\n" | str substring 39..
-
+	# Grep (or find in nushell) all the IPv4 addresses
+	# From testing, 39 is the index where the IP's start
+	# BE SURE TO USE --no-highlight FLAG WITH FIND, without that flag, the string value changes to smth unexpected
 	# Make sure the display variable matches the format [here](https://linuxvox.com/blog/linux-display-environment-variable/#fundamental-concepts-of-linux-display-environment-variables)
-	$env.DISPLAY = $iplist.0 + ":0.0" # this is the default display
+	# Also don't forget the single quotes inside of a double quoted string. That's pretty important
+	$env.DISPLAY = $"((ipconfig | find --no-highlight 'IPv4 Address' | str substring 39..).0):0.0" # 0.0 means the first screen of the first X-session
 	print $"Set DISPLAY={($env.DISPLAY)}"
-	# Clean up the dummy file
-	rm file.txt
 }
 
 # Make sure you're running this script in the git repo.
