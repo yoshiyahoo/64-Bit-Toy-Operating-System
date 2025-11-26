@@ -1,7 +1,20 @@
 # 64-Bit-Toy-Operating-System
 Here is a toy OS made for me. It's kinda cool
 
+You can build it from source on your system with the following docker container.
+
 # Running Container
+## Setup for X Server
+The X server is required to run the OS emulator.
+
+For Linux, this is already setup.
+
+For Windows, check the following
+[Overall Guide](https://dev.to/darksmile92/run-gui-app-in-linux-docker-container-on-windows-host-4kde)
+- Note that the IP address can be any IP address of your network interfaces.
+- The build script (in nushell, warning bash users) may also be helpful
+
+## Setting up Docker Container
 Make sure docker is running first
 ```bash
 # You only have to do this once
